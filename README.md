@@ -10,9 +10,3 @@ Would like to...
  * Improve formatting
  * Improve macros?
  * Add physics! (For quals/comps!)
-
-
-
-
-
-...
