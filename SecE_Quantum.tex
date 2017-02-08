@@ -1,0 +1,1352 @@
+
+\section{Quantum Mechanics}
+(such as fundamental concepts, solutions of
+the Schrodinger equation (including
+square wells, harmonic oscillators,
+and hydrogenic atoms), spin, angular
+momentum, wave function symmetry,
+elementary perturbation theory)
+
+\subsection{Fundamental concepts}
+\subsubsection{Some Common Integrals and Probability Theory}
+\Table{
+\hline
+
+$\textrm{erf}(\infty), \textrm{erf}(-\infty) $ & $\textrm{erf}(\infty) = 1, \textrm{erf}(-\infty) = -1$
+
+\\ \hline
+
+The Gaussian Integral & Option 1: Know the error function. \\
+
+$\int_{-\infty}^{+\infty} e^{-ax^2}\,dx = $ & $\dfrac{\sqrt{\pi}}{2\sqrt{a}} \, \textrm{erf}(x\sqrt{a})\bigg|_{-\infty}^{+\infty} = \sqrt{\dfrac{\pi}{a}}$ \\ 
+
+& Option 2: Use polar coordinate trick. \\
+& $I^2 = \Big( \bigintss_{- \infty}^{\infty} e^{-ax^2} \, dx \Big)^2$ \\
+& $ = \bigintss \bigintss_{\textrm{\textbf{R}}^2} e^{-a(x^2+y^2)} \, d(x,y) $ \\
+& $ = \bigintss_0^{2 \pi} \bigintss_0^{\infty} e^{-ar^2} r \,dr\,d\theta $ \\
+& $ = 2\pi \bigintss_0^{\infty} re^{-ar^2} dr $ \\
+& Let $s = -ar^2$ and then $ds = -2ar \, dr$. \\
+& $I^2 = \dfrac{\pi}{a} \bigintss_{-\infty}^{0} e^s \, ds $ \\
+& $ = \dfrac{\pi}{a}$ \\
+& $I = \sqrt{\dfrac{\pi}{a}}$ 
+
+\\ \hline
+}
+
+%%%%%%%%%%
+
+\Table{
+\hline
+
+$\langle f(x) \rangle = $ & $\int_{-\infty}^{+\infty} f(x)p(x)\,dx$
+
+\\ \hline
+\begin{minipage}{.3\textwidth}
+$Q$ is an operator corresponding to physical observable $x$. One may obtain the expectation value of $x$ by ...
+\end{minipage}
+&
+\begin{minipage}{.6\textwidth}
+... using $\braket{Q} = \braket{\psi^*|Q|\psi} = \int\psi^*Q\psi$, from which one may obtain the expectation value of $x$ by knowing how $Q$ corresponds to $x$.
+\end{minipage}
+
+\\ \hline
+}
+
+%%%%%%%%%%
+
+
+\Table{
+\hline
+
+Standard deviation &
+\MiniPg{.7}{
+\center
+ $\sigma = \sqrt{ \braket{(\Delta x)^2} }$
+
+$ = \sqrt{ \braket{ x^2} - \braket{ x}^2 }$
+
+For a measurement $Q$ corresponding to hermitian operator $\hat{Q}$,
+
+$\sigma^2 = \braket{(\hat{Q} - \braket{Q} )^2}$. % = \braket{\Psi|(\hat{Q} - q)^2 \Psi}$
+}
+
+\\ \hline
+
+Normalize $\psi (\phi) = A e^{im \phi}$ & $1 = \int |\psi(\phi)|^2 d \, \phi  = A^2\int_0^{2 \pi} e^{im\phi}e^{-im \phi} d\,\phi = 2 \pi A^2$\\
+ &$ A = \dfrac{1}{\sqrt{2 \pi}}$
+ 
+\\ \hline
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Formalism and Linear Algebra}
+
+This section could be called 'Griffiths runs the voodoo down' because it is a list of the cardinal equations of QM as explained in Chapter 3 of, \textit{Introduction to Quantum Mechanics}.
+\Table{
+\hline
+
+vector representation 
+&
+$\ket{\alpha} \rightarrow \bold{a} = \SmallMatrix{
+a_1 \\
+a_2 \\
+\vdots \\
+a_N 
+}
+$
+
+\\ \hline
+
+\MiniPg{.3}{
+Inner product of two vectors
+}
+&
+$\braket{\alpha | \beta} = a_1^*b_1 + a_2^*b_2 + ... a_N^*b_N.$
+
+\\ \hline
+
+Properties of an inner product
+&
+\MiniPg{.7}{
+\center
+
+$\braket{\beta|\alpha} = \braket{\alpha|\beta}^*$
+
+$\braket{\alpha | \alpha} \geq 0$, and $\braket{\alpha | \alpha} = 0 \iff \ket{\alpha} = 0$, 
+
+$\bra{\alpha} | (b|\ket{\beta} + c|\ket{\gamma}) = b \braket{\alpha | \beta} + c \braket{ \alpha | \gamma}$.
+.
+}
+
+\\ \hline
+
+Linear transformations
+
+&
+
+\MiniPg{.7}{
+\center
+Linear transformations $T$ are represented by matrices.
+
+$\ket{\beta} = T \ket{\alpha} \rightarrow \bold{b} = \bold{Ta} = \SmallMatrix{
+t_{1 \, 1} & t_{1 \, 2} & ... & t_{1 \, N} \\
+t_{2 \, 1} & t_{2 \, 2} & ... & t_{2 \, N} \\
+\vdots     & \vdots	 & .\vdots. & \vdots \\
+t_{N \, 1} & t_{N \, 2} & ... & t_{N \, N} 
+}\SmallMatrix{
+a_1 \\
+a_2  \\
+\vdots \\
+a_N
+}
+$.
+
+}
+
+\\ \hline
+}
+
+\Table{
+\hline
+
+Hilbert space
+&
+\MiniPg{.7}{
+
+Hilbert space comprises the set of all square-integrable functions, on a specified interval, $f(x)$ such that $\bigint_a^b |f(x)|^2 dx < \infty$.
+
+Wave functions live in Hilbert space.
+
+}
+
+\\ \hline
+
+\MiniPg{.3}{
+Inner product of two functions $f(x)$ and $g(x)$.
+}
+
+&
+
+\MiniPg{.7}{
+
+\center
+
+$\braket{f|g} \equiv \bigint_a^b f(x)*g(x) dx$.
+
+}
+
+\\ \hline
+
+Orthonormality
+
+&
+
+\MiniPg{.7}{
+\center
+A set of functions is orthonormal if they are normalized and mutually orthogonal:
+$\braket{f_m|f_n} = \delta_{mn}$.
+}
+
+\\ \hline
+}
+
+%%%%
+
+\Table{
+\hline
+
+Completeness
+
+&
+
+\MiniPg{.7}{
+\center
+
+A set of functions is complete if any other function (in Hilbert space) can be expressed as a linear combination of them:
+$$f(x) = \sum_{n=1}^{\infty} c_n f_n(x) $$
+
+}
+
+\\ \hline
+
+Coefficients
+
+&
+
+\MiniPg{.7}{
+\center
+If the functions $\{f_n(x)\}$ are orthonormal, the coefficients are $c_n = \braket{f_n|f} = \bigint f_n(x)^*f(x,t) \, dx.$
+
+}
+
+\\ \hline
+
+Normalization condition
+
+&
+
+\MiniPg{.7}{
+\center
+
+$ \int_{-\infty}{^\infty}dx \, |\Psi(x,t)|^2 = 1$
+
+$ \sum_n |c_n|^2 = 1$.
+
+}
+
+\\ \hline
+}
+
+%%%%
+
+\Table{
+\hline
+
+Expectation value
+
+&
+
+\MiniPg{.7}{
+\center
+
+The expectation value of an observable $Q(x,p)$:
+
+$\braket{Q} = \int \Psi^*\hat{Q}\Psi dx = \braket{\Psi|\hat{Q} \Psi}$
+
+The expectation value may not be the eigenvalue (measured value) of a Hermitian operator (observable).
+}
+
+\\ \hline
+
+\MiniPg{.3}{
+
+Probability of getting eigenvalue $q_n$ associated with eigenfunction $f_n(x)$
+
+}
+
+&
+
+\MiniPg{.7}{
+
+Probability for discrete is $|c_n|^2$.
+
+Probability for continuous in range $dz$ is $|c(z)|^2 dz$.
+
+}
+
+\\ \hline
+}
+
+%%%%
+
+\Table{
+\hline
+
+Most probable value
+
+&
+
+\MiniPg{.7}{
+\center
+Mode not mean! Find max of $|\psi|^2$. Ex: Most probable $r$ for radially dependent, spherically symmetrical wave function $\psi(r)$.
+
+$|\psi|^2 \, dV = |\psi|^2 4 \pi r^2 \, dr$
+
+For max, $\dfrac{d}{dr} |\psi|^2 4 \pi r^2 = 0$. Solve for $r$ to find most probable radial coordinate.
+}
+
+\\ \hline
+}
+
+%%%%
+
+\Table{
+\hline
+\MiniPg{.3}{
+Hermitian operators as measurements
+}
+
+&
+
+\MiniPg{.7}{
+
+The outcome of a measurement is real, so we must have $\braket{Q} = \braket{Q}^*.$ Therefore, $\braket{\Psi|\hat{Q} \Psi} = \braket{\hat{Q} \Psi|\Psi}.$ \textbf{The operators representing observables are hermitian:} $\braket{f|\hat{Q} f} = \braket{\hat{Q} f | f}$ for all $f(x)$. The last expression implies $\braket{f|\hat{Q} g} = \braket{\hat{Q} f | g}$ for all $f(x)$ and $g(x)$.
+
+}
+
+\\ \hline
+\MiniPg{.3}{
+Hermitian operators as linear transformations
+}
+
+&
+
+\MiniPg{.7}{
+\center
+Hermitian operators are linear transformations: $\ket{\beta} = \hat{Q} \ket{\alpha}$.
+
+Just as vectors are represented, with respect to a particular basis $(\ket{e_n}),$ by their components,
+
+$\ket{\alpha} = \sum_n a_n\ket{e_n},$ with $a_n = \braket{e_n|\alpha}$,
+
+operators are represented by their matrix elements $\braket{e_m|\hat{Q}|e_n} \equiv Q_{mn}$. In this notation, the linear transformation looks like this: $\sum_n b_n \ket{e_n} = \sum_n a_n \hat{Q} \ket{e_n}$. Take the inner product with $\ket{e_m}$, i.e. $\sum_n b_n \braket{e_m|e_n} = \sum_n a_n \bra{e_m} \hat{Q} \ket{e_n}$, and hence $b_m = \sum_n Q_{mn}a_n$.
+
+Check out this way dope list of QM operators 
+\small \url{https://en.wikipedia.org/wiki/Operator_(physics)\#Table_of_QM_operators}.
+
+}
+
+\\ \hline
+}
+
+
+
+\Table{
+\hline
+
+braket
+
+&
+
+\MiniPg{.7}{
+\center
+Ket is a vector, but what is bra?
+
+In function space it can be thought of as an instruction to integrate: $\bra{f} = \bigint f^* [some \, ket] dx.$
+
+In finite-dimensional vector space, bra is a row vector: $\bra{\alpha} = (a_1^* \ \ a_2^* \ \ ... \ \ a_n^*)$
+}
+
+\\ \hline
+
+Projection operator
+
+&
+\MiniPg{.7}{
+\center
+$\hat{P} \equiv \ket{\alpha}\bra{\alpha}$
+
+$\hat{P}\ket{\beta} = \braket{\alpha|\beta} \, \ket{\alpha}.$
+
+}
+
+\\ \hline
+
+Identity operator
+
+&
+
+\MiniPg{.7}{
+\center
+If $\{\ket{e_n}\}$ is a discrete orthonormal basis, then $\sum_n \ket{e_n}\bra{e_n} = 1$ (the identity operator).
+
+$\sum_n \ket{e_n} \braket{e_n|\alpha} = \ket{\alpha}$.
+
+For orthonormalized continuous basis, $\bigint \ket{e_z} \bra{e_z} \, dz = 1$.
+}
+
+\\ \hline
+
+Inverse of an operator & $\hat{A}^{-1}$ such that $\hat{A}\hat{A}^{-1} = \hat{A}^{-1}\hat{A} = \hat{I}$
+
+\\ \hline
+}
+
+%%%%
+
+\Table{
+\hline
+
+\MiniPg{.3}{
+
+Determinate states
+
+}
+
+&
+
+\MiniPg{.7}{
+
+Determinate states are the physical meaning of the eigenfunctions of hermitian operators. If the eigenfunction spectrum is discrete, the eigenfunctions lie in the Hilbert space and constitute physically realizable states. If the spectrum is continuous, they are non-normalizable and do not represent possible wave functions, though linear combinations of them may be normalizable.
+
+}
+
+\\ \hline
+\MiniPg{.3}{
+
+Properties of hermitian operators
+}
+
+&
+
+\MiniPg{.7}{
+\center
+I. Their eigenvalues are real.
+
+$\hat{Q}f = qf$
+
+II. Eigenfunctions belonging to distinct eigenvalues are orthogonal.
+
+If $\hat{Q}f = qf$ and $\hat{Q}g = q'g$, then $\braket{f|g} = 0$.
+
+}
+
+\\ \hline
+
+\MiniPg{.3}{
+Hermitian conjugate or adjoint 
+}
+
+&
+\MiniPg{.7}{
+$\hat{Q}^\dagger$ such that $\braket{f|\hat{Q} g} = \braket{\hat{Q}^\dagger f|g}$ for all $f$ and $g$. A Hermitian operator is equal to its hermitian conjugate: $\hat{Q}  = \hat{Q}^\dagger$. Also, $(\hat{Q}\hat{R})^\dagger = \hat{R}^\dagger \hat{Q}^\dagger$.
+}
+
+
+
+\\ \hline
+}
+
+%%%%
+
+
+\Table{
+\hline
+
+Compatibility Theorem 
+&
+\MiniPg{.7}{
+Let us have two observables,  $A$ and $B$, represented by  $\hat{A}$ and $\hat{B}$. Then any one of the following statements implies the other two:
+
+\begin{itemize}
+	\item $A$ and $B$ are compatible observables.
+	\item $\hat{A}$ and $\hat{B}$ have a common eigenbasis.
+	\item The operators $\hat{A}$ and $\hat{B}$ commute, that is, $[\hat{A}, \hat{B}] = 0$
+\end{itemize}
+\tiny \url{https://en.wikipedia.org/wiki/Complete_set_of_commuting_observables}
+}
+
+\\ \hline
+}
+
+%%%%
+
+\Table{
+\hline
+
+\MiniPg{.3}{
+Generalized statistical interpretation
+}
+&
+\MiniPg{.7}{
+\center
+
+If the spectrum of $\hat{Q}$ is discrete, the probability of getting the particular eigenvalue $q_n$ associated with the orthonormalized eigenfunction $f_n(x)$ is $|c_n|^2,$ where $c_n = \braket{f_n|\Psi}$.
+
+If the spectrum is continuous, with real eigenvalues $q(z)$ and associated Dirac-orthonormalized eigenfunctions $f_z(x)$, the probability of getting a result in the range $dz$ is $|c(z)|^2 dz,$ where $c(z) = \braket{f_z|\Psi}$. Upon measurement, the wave function collapses to the corresponding eigenstate.
+
+}
+
+\\ \hline
+
+\MiniPg{.3}{
+Generalized uncertainty principle
+}
+
+&
+
+\MiniPg{.7}{
+\center
+$\sigma_A^2 \sigma_B^2 \geq \Big(\dfrac{1}{2i} \braket{[\hat{A}, \hat{B}]} \Big)^2$
+
+There is an uncertainty principle for every pair of observables whose operators do not commute, i.e. incompatible observables. See pages 110-111 in Griffiths for more.
+}
+\\ \hline
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsubsection{Uncertainty}
+\Table{
+\hline
+
+Commutator & $[\hat A, \hat B] = \hat A \hat B - \hat B \hat A$
+
+\\ \hline
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Position and Momentum}
+\center
+\begin{tabular}{|c|c|}
+\hline
+
+de Broglie relations & \begin{minipage}{.4\textwidth}
+ $\lambda = h/p \; \;\;\; \;\; \& \; \;\;\; \;\; \nu = E/h \; \; \;$ or
+ 
+ $\bold{p} = \hbar \bold{k}  \;\; \;\;\; \;  \&   \;\;\; \;\;\;  E = \hbar \omega =h \nu$
+ 
+ \end{minipage}
+ 
+ \\ \hline
+
+One dimensional & Plane wave solution to SE \\
+ operator & $\psi = e^{i(kx-\omega t)} $\\
+&$\dfrac{\partial \psi}{ \partial x} = ike^{i(kx-\omega t)}  = ik\psi$ \\
+& De Broglie relation: $p = \hbar k$ \\
+& $\dfrac{\partial \psi}{ \partial x} = i \dfrac{p}{\hbar}\psi$ \\
+&$\boxed{ \hat p = -i\hbar \dfrac{\partial }{ \partial x} }$
+
+\\ \hline
+
+Three dimensional & Plane wave solution to SE \\
+operator & $\psi = e^{i(\bold{k} \cdot \bold{r} -\omega t)} $\\
+& $\boxed{  \bold{\hat p} = -i\hbar \bold{\nabla} } $
+
+\\ \hline
+
+$\braket{p} $ & $\braket{p} = m\dfrac{d \braket{x}}{dt} = -i\hbar \bigintss \psi^{\*}\dfrac{\partial \psi}{\partial x} dx$
+
+\\ \hline
+\end{tabular}
+\flushleft
+
+%%%%
+
+
+\Table{
+\hline
+
+Probability current density
+
+&
+
+\MiniPg{.6}{
+\center
+$\bold{j} = \dfrac{\hbar}{2mi} (\Psi \nabla \Psi^* - \Psi^* \nabla \Psi) = \dfrac{1}{2m}(\Psi^* \hat{\bold{p}} \Psi - \Psi \hat{\bold{p}} \Psi^*)$
+
+}
+
+\\ \hline
+}
+
+%%%%
+
+\Table{
+\hline
+
+Uncertainty principle & $\sigma_x\sigma_p \geq \dfrac{ \hbar}{2}$
+
+\\ \hline
+
+Canonical commutation relation
+&
+\MiniPg{.7}{
+From Wikipedia: "In quantum mechanics (physics), the canonical commutation relation is the fundamental relation between canonical conjugate quantities (quantities which are related by definition such that one is the Fourier transform of another)."
+}
+
+\\ \hline
+
+\MiniPg{.3}{
+Commutation of position and momentum
+}
+&
+$[\hat x, \hat p ] = i\hbar$
+
+\\ \hline
+
+\MiniPg{.3}{
+Position space and momentum space wave functions
+}
+
+&
+
+\MiniPg{.7}{
+\center
+
+Momentum: $\phi(p,t) = \dfrac{1}{\sqrt{2 \pi \hbar}} \bigint_{-\infty}^{\infty} e^{-ipx/\hbar} \Psi(x,t) \, dx$
+
+Position: $\Psi(x,t) = \dfrac{1}{\sqrt{2 \pi \hbar}} \bigint_{-\infty}^{\infty} e^{-ipx/\hbar} \phi(p,t) \, dp$
+
+}
+
+\\ \hline
+}
+
+
+%\subsubsection{Fourier transform}
+
+\Table{
+\hline
+
+$\psi(\bold{r})$
+
+&
+\MiniPg{.7}{
+
+\GraphicWHN{1}{1}{FourTransfPos.png}
+
+}
+\\
+$\phi(\bold{k})$
+
+&
+\MiniPg{.7}{
+
+\GraphicWHN{1}{.8}{FourTransfMom.png}
+
+\tiny \url{https://en.wikipedia.org/wiki/Position_and_momentum_space}
+
+}
+
+ \\ \hline
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Solutions of the Schrodinger equation, square wells, harmonic oscillators, hydrogenic atoms} 
+\subsubsection{Taming of the Schrod}
+\center
+\begin{tabular}{|c|c|}
+\hline
+
+General Schrodinger Eqn. & $i\hbar \dfrac{\partial}{\partial t}\Psi(\textrm{\textbf{r}},t) = \hat{H}\Psi(\textrm{\textbf{r}},t)$
+
+\\ \hline
+
+Typical SE, nonrelativistic &
+\MiniPg{.5}{
+\center
+$i\hbar \dfrac{\partial}{\partial t}\Psi(\textrm{\textbf{r}},t) = \Big[\dfrac{-\hbar^2}{2\mu} \nabla^2 + V(\textrm{\textbf{r}},t) \Big]\, \Psi(\textrm{\textbf{r}},t)$
+\flushleft
+where $\mu$ is reduced mass of the particle.
+}
+\\ \hline
+
+\MiniPg{.5}{
+Time-independent Schrodinger Equation and interpretation 
+}
+&
+\MiniPg{.5}{
+$E\Psi = \hat H \Psi$
+When the Hamiltonian operator acts on a certain wave function $\Psi$, and the result is proportional to the same wave function $\Psi$, then $\Psi$ is a stationary state, and the proportionality constant, E, is the energy of the state $\Psi$.
+}
+
+\\ \hline
+
+Typical TISE & $E\Psi(\textrm{\textbf{r}}) = \Big[\dfrac{-\hbar^2}{2\mu} \nabla^2 + V(\textrm{\textbf{r}}) \Big]\, \Psi(\textrm{\textbf{r}})$
+
+\\ \hline
+
+\end{tabular}
+\flushleft
+
+%%%%%%%%%%
+
+\subsubsection{Infinite Square Well}
+Consider a particle of mass $m$ trapped in an infinite square well between 0 and $a$.
+\center
+\begin{tabular}{|c|c|}
+\hline
+
+$\psi_n (x)$ & $\psi_n (x) = \sqrt{\dfrac{2}{a}} \sin (k_nx)$, where $k = \dfrac{n \pi}{a}$
+
+\\ \hline
+
+Energy & 
+\MiniPg{.6}{
+\center
+$E \psi = \hat{H} \psi$
+
+$V(x) = 0$ in well, so we have
+
+$E_n = \dfrac{-\hbar^2}{2 m} \nabla^2 \psi = \dfrac{\hbar^2 k_n^2}{2m} = \dfrac{ \hbar^2 n^2 \pi^2}{2ma^2}$
+}
+
+\\ \hline
+
+$\omega_n$ &  $\omega_n = \dfrac{E}{\hbar} =  \dfrac{\hbar k_n^2}{2m} = \dfrac{ \hbar n^2 \pi^2}{2ma^2}$ 
+
+\\ \hline
+
+values of $n$ & $n = 1,2,3...$
+
+\\ \hline
+\end{tabular}
+\flushleft
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Quantum Harmonic Oscillator}
+\Table{
+\hline
+
+$V(x)$ & $V(x) = \dfrac{1}{2} k x^2 = \dfrac{1}{2} m \omega^2 x^2$
+
+\\ \hline
+
+$\psi_n(x) $ & \tiny \url{https://en.wikipedia.org/wiki/Quantum_harmonic_oscillator} \large
+
+\\ \hline
+
+Energy levels &  $E_n = \hbar \omega \Big( n + \dfrac{1}{2} \Big)$
+
+\\ \hline
+
+values of $n$ & $n = 0,1,2...$
+
+\\ \hline
+
+Wave functions and potential & 
+\MiniPg{.5}{
+
+\GraphicWHN{.9}{.55}{QSHO.png}
+
+\tiny Griffiths, \textit{Introduction to Quantum Mechanics}
+
+}
+
+\\ \hline
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsection{Angular momentum} 
+\Table{
+\hline
+
+\MiniPg{.35}{
+Commutation relations of angular momentum operators
+}
+&
+\MiniPg{.65}{
+\center
+Consider classical angular momentum $\bold{L} = \bold{r}\times\bold{p}$. Do some algebra and find
+
+$[L_x,L_y] = i \hbar L_z; \; \; \; [L_y,L_z] = i \hbar L_x; \; \; \; [L_z,L_x] = i \hbar L_y.$
+
+Also, $[L^2, \bold{L} ] = 0$ where $L^2 \equiv L_x^2 + L_y^2 + L_z^2$.
+
+}
+
+\\ \hline
+}
+
+%%%%
+
+\Table{
+
+\MiniPg{.35}{
+Eigenvalues of angular momentum operators
+}
+& 
+\MiniPg{.65}{
+\center
+$L^2 f_l^m = \hbar^2 l (l + 1) f_l^m; \;\;\;\;\; L_z f_l^m = \hbar m f_l^m$, 
+
+where $l = 0,1/2, 1, 3/2, ...; $ and $m = -l, -l+1, ... l -1, l$.
+
+Note that $\sqrt{l(l+1) } > l$ except trivially when $l=0$.
+
+\GraphicWHN{.5}{.49}{AngMomGrif.png}
+
+\center \tiny Griffiths, \textit{Introduction to Quantum Mechanics}
+}
+ 
+\\ \hline
+}
+
+%%%%
+
+\Table{
+\hline
+
+Ladder operator
+
+&
+
+\MiniPg{.65}{
+\center
+$L_{\pm} \equiv L_x \pm iL_y$
+
+$L_{\pm} f_l^m = \hbar \sqrt{ l(l+1) - m(m \pm 1 ) } f_l^{m\pm 1}$. 
+}
+
+\\ \hline
+
+\MiniPg{.35}{
+Eigenfunctions
+}
+
+&
+
+\MiniPg{.65}{
+\center
+
+$L_z = \dfrac{\hbar}{i} \dfrac{\partial}{\partial \phi}$
+
+$L^2 = -\hbar^2 \Big[ \dfrac{1}{\sin \theta} \dfrac{\partial}{\partial \theta} \Big( \sin \theta \dfrac{\partial}{\partial \theta} \Big) + \dfrac{1}{\sin^2 \theta} \dfrac{\partial^2}{\partial \phi^2} \Big]$
+
+See page 168 in Griffiths for more.
+}
+
+\\ \hline
+ 
+Energy of a quantum rotor
+
+&
+
+\MiniPg{.65}{
+\center
+
+Recall classical rotational energy $\frac{L^2}{2I}$. Quantum mechanically,
+
+$E_{rot} = \dfrac{\hbar^2 l(l + 1)}{2 m r^2}, \, \, \, \, l=0,1,2,3,...$
+
+}
+ 
+ \\ \hline
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Spin}
+Intrinsic (not orbital) angular momentum 
+\Table{
+\hline
+
+Commutation relations
+&
+$[S_x,S_y] = i \hbar S_z; \; \; \; [S_y,S_z] = i \hbar S_x; \; \; \; [S_z,S_x] = i \hbar S_y.$
+
+\\ \hline
+
+\MiniPg{.3}{
+Eigenvectors and eigenvalues
+}
+
+& 
+
+\MiniPg{.7}{
+\center
+
+$S^2 \ket{s \; m} = \hbar^2s(s+1)\ket{s \; m}; \; \; \; \; S_z \ket{s \; m} = \hbar m \ket{s \; m}$
+
+where $s = 0,1/2, 1, 3/2, ...; $ and $m = -s, -s+1, ... s -1, s$.
+}
+
+\\ \hline
+
+Ladder operator
+
+&
+
+\MiniPg{.7}{
+\center
+$S_{\pm} \equiv S_x \pm iS_y$
+
+$S_{\pm} \ket{s \; m} = \hbar \sqrt{ s(s+1) - m(m \pm 1 ) }\, \ket{s \; \, (m \pm 1)}$.
+}
+
+\\ \hline
+
+Eigenstate
+
+&
+
+Up: $\ket{\frac{1}{2} \; \frac{1}{2}}$; Down: $\ket{\frac{1}{2} \; -\frac{1}{2}}$
+
+\\ \hline
+
+Spinor (spin vector)
+&
+$\chi = \SmallMatrix{a \\ b} = a \SmallMatrix{1 \\ 0} + b \SmallMatrix{0 \\ 1} = a \chi_+ + b\chi_- $
+
+\\ \hline
+
+Spin operators
+&
+
+\MiniPg{.7}{
+\center
+
+Non-hermitian: 
+$\Mtx{S}_+ = \hbar \SmallMatrix{ 0 & 1 \\ 0 & 0}, \;\;\; \Mtx{S}_- = \hbar \SmallMatrix{ 0 & 0 \\ 1 & 0}$
+
+Hermitian observables: 
+$\Mtx{S}^2 = \dfrac{3}{4} \hbar^2 \SmallMatrix{1 & 0 \\ 0 & 1}; \;\;\;\;
+\Mtx{S} = \dfrac{\hbar}{2} \pmb{\sigma}$ where $\pmb{\sigma}$ represents the Pauli spin matrices.
+
+
+}
+
+\\ \hline
+
+Pauli Spin Matrices
+
+&
+
+\MiniPg{.7}{
+\center
+
+$ \pmb{\sigma}_x = \SmallMatrix{ 0 & 1 \\ 1 & 0 }, \;\;\; \pmb{\sigma}_y = \SmallMatrix{ 0 & -i \\ i & 0 }, \;\;\; \pmb{\sigma}_z = \SmallMatrix{ 1 & 0 \\ 0 & 1 }$.
+
+}
+
+\\ \hline
+}
+
+
+
+\Table{
+\hline
+
+Eigenspinors
+
+&
+
+\MiniPg{.7}{
+\center
+
+$\chi_+^z = \SmallMatrix{1 \\ 0} $ with eigenvalue $\dfrac{\hbar}{2}$
+
+$\chi_-^z = \SmallMatrix{0 \\ 1} $ with eigenvalue $-\dfrac{\hbar}{2}$
+
+$\chi_+^x = \SmallMatrix{\frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}}} $ with eigenvalue $\dfrac{\hbar}{2}$
+
+$\chi_-^x = \SmallMatrix{\frac{1}{\sqrt{2}} \\ - \frac{1}{\sqrt{2}}} $ with eigenvalue $-\dfrac{\hbar}{2}$
+
+$\chi_+^y = \SmallMatrix{\frac{1}{\sqrt{2}} \\ i\frac{1}{\sqrt{2}}} $ with eigenvalue $\dfrac{\hbar}{2}$
+
+$\chi_-^y = \SmallMatrix{\frac{1}{\sqrt{2}} \\ -i \frac{1}{\sqrt{2}}} $ with eigenvalue $-\dfrac{\hbar}{2}$
+
+And, using $\hat{r} = \sin \theta \cos \phi \hat{i} + \sin \theta \sin \phi \hat{j} + \cos \theta \hat{k}$, we have the general expression
+
+$\chi_+^r = \SmallMatrix{ \cos(\theta / 2) \\ e^{i \phi} \sin(\theta/2)} $ with eigenvalue $\dfrac{\hbar}{2}$
+
+$\chi_-^r = \SmallMatrix{e^{-i \phi} \sin(\theta/2) \\ -\cos(\theta / 2)} $ with eigenvalue $-\dfrac{\hbar}{2}$
+
+}
+
+\\ \hline
+}
+
+
+
+
+\Table{
+\hline
+\MiniPg{.6}{
+Electron magnetic dipole moment
+}
+
+&
+
+\MiniPg{.4}{
+\center
+
+$\pmb{ \mu} = g \dfrac{q}{2m} \bold{S} = \gamma \bold{S}$,
+
+where $g$ is the g factor.
+
+}
+
+\\ \hline
+
+\MiniPg{.6}{
+Hamiltonian of  spinning charged particle at rest in a magnetic field $\bold{B}$
+}
+
+&
+
+$H = - \gamma \bold{B} \cdot \bold{S}$
+
+\\ \hline
+}
+
+
+%%%%
+
+Addition of angular momentum in a two particle system, e.g. proton and electron in ground state of H
+
+\Table{
+\hline
+
+\MiniPg{.3}{
+Possible combos of up and down
+}
+&
+$\uparrow \uparrow, \;\; \uparrow \downarrow,\;\; \downarrow \uparrow, \;\; \downarrow \downarrow$
+
+\\ \hline
+
+Total angular momentum
+
+&
+
+\MiniPg{.7}{
+\center
+
+$\bold{S} \equiv \bold{S}^{(1)} + \bold{S}^{(2)}$
+
+$S_z \chi_1 \chi_2 = (S_z^{(1)} + S_z^{(2)}) \chi_1 \chi_2 = \hbar(m_1 + m_2) \chi_1 \chi_2$
+
+}
+
+\\ \hline
+
+\MiniPg{.3}{
+
+Triplet combination of states
+
+}
+
+&
+
+\MiniPg{.7}{
+\center
+
+Being that the quantum number for the composite system is $m = m_1 + m_2$; being the four possible combos yield 1, 0, 0, -1; and being that the possible values of $m$ range in integer steps from $-s$ to $+s$, we infer that $s=1$. This is enough to imply the first or last state of the triplet combo. The middle state can be found by applying $S_{\pm}$ to one of the other two. Representing the states as $\ket{s \,\, m}$
+\[
+\renewcommand\arraystretch{0.44}
+\left \{
+  \begin{tabular}{ccc}
+  $\ket{1 \;\; 1} $ & $ = $ & $\uparrow \uparrow $\\
+  $\ket{1 \;\; 0} $ & $ = $ & $ \frac{1}{\sqrt{2}}(\uparrow \downarrow + \downarrow \uparrow)$ \\
+  $\ket{1 \;\; -1}$ & $ = $ & $\downarrow \downarrow$
+  \end{tabular}
+\right \}
+\]
+
+
+}
+
+\\ \hline
+
+Singlet state
+
+&
+
+\MiniPg{.7}{
+\center
+
+The orthogonal state:
+
+$\Big\{ \ket{0 \;\; 0} =  \frac{1}{\sqrt{2}}(\uparrow \downarrow - \downarrow \uparrow) \Big\}$.
+
+%That this is a singlet can be confirmed by applying $S_{\pm}$ (???).
+
+}
+
+\\ \hline
+
+\MiniPg{.3}{
+
+Possible values of spin for the composite system
+
+}
+
+&
+
+\MiniPg{.7}{
+\center
+$s = (s_1 + s_2), \;\; (s_1 + s_2 - 1), \;\; (s_1 + s_2 - 2), \;\; ..., \;\; |s_1 - s_2|$,
+
+where $s_1 \geq s_2$.
+
+
+}
+
+\\ \hline
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Spherical quantum mechanics}
+\Table{
+\hline
+
+\MiniPg{.3}{
+Proportionalities of first six spherical harmonics
+}
+
+&
+
+\MiniPg{.7}{\center
+$
+Y^m_l(\theta, \phi): \ \
+Y^0_0 = const. \ \ \ \
+Y^0_l \propto \cos \theta \ \ \ \ 
+Y^{\pm1}_l \propto \sin \theta e^{\pm i \phi}
+$
+
+$
+Y^0_2 \propto 3 \cos^2 \theta - 1 \ \ \ \
+Y^{\pm1}_2 \propto \sin \theta \cos \theta e^{\pm i \phi} \ \ \ \
+Y^{\pm 2}_2 \propto \sin^2 \theta e^{\pm i \phi}
+$
+
+}
+
+\\ \hline
+}
+
+%%%%
+
+\Table{
+\hline
+
+\MiniPg{.3}{
+
+First two Bessel functions
+
+}
+
+&
+
+\MiniPg{.7}{
+\center
+$j_n(x): \ \ \
+j_0 = \dfrac{\sin x}{x} \approx_{small \ x} 1 \ \ \ \ \
+j_1 = \dfrac{\sin x}{x^2} - \dfrac{\cos x}{x} \approx_{small \ x} \dfrac{x}{3} 
+$
+
+(soln. for radial component of spherical ISW)
+}
+
+\\ \hline
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsection{Multiparticle Wave Functions and Symmetry} 
+\Table{
+\hline
+
+\MiniPg{.4}{
+
+Hamiltonian for a two-particle system 
+
+}
+
+&
+
+$H = -\dfrac{\hbar^2}{2m_1} \nabla_1^2 -\dfrac{\hbar^2}{2m_2} \nabla_2^2 + V(\bold{r}_1, \bold{r}_2, t)$
+
+\\ \hline
+
+Statistical interpretation 
+
+&
+
+$|\Psi(\bold{r}_1, \bold{r}_2, t)|^2 d^3\bold{r}_1 d^3\bold{r}_2 = 1$
+
+\\ \hline
+
+Two particle wave function 
+
+&
+
+\MiniPg{.6}{
+\center
+
+If particle 1 is in state $\psi_a(\bold{r})$ and particle 2 is in state $\psi_b(\bold{r})$ then $\psi(\bold{r}_1,\bold{r}_2) = \psi_a(\bold{r}_1)\psi_b(\bold{r}_2)$
+
+If the particles are indistinguishable then we need a wave function that does not distinguish which particle is in which state:
+
+$\psi_{\pm}(\bold{r}_1,\bold{r}_2) = A[\psi_a(\bold{r}_1)\psi_b(\bold{r}_2) \pm \psi_b(\bold{r}_1)\psi_a(\bold{r}_2)]$
+
+Bosons use the +, and fermions use the $-$.
+
+}
+
+\\ \hline
+}
+
+\Table{
+\hline
+
+Bosons 
+
+&
+\MiniPg{.6}{
+
+\textit{integer} spin. Statistics do not restrict the number of them that occupy a single quantum state. Ex: photons, gluons, composite particles (e.g. mesons and stable nuclei of even mass number such as deuterium), some quasiparticles (e.g. Cooper pairs, plasmons, and phonons) \tiny https://en.wikipedia.org/wiki/Boson
+
+}
+
+\\ \hline
+
+Fermions 
+
+&
+\MiniPg{.6}{
+
+\textit{half integer} spin. Restricted by Pauli Exclusion. The Standard Model recognizes two types of elementary fermions: quarks and leptons. In all, the model distinguishes 24 different fermions. There are six quarks (up, down, strange, charm, bottom and top quarks), and six leptons (electron, electron neutrino, muon, muon neutrino, tau particle and tau neutrino), along with the corresponding antiparticle of each of these. \tiny https://en.wikipedia.org/wiki/Fermion
+
+}
+
+\\ \hline
+
+Pauli Exclusion principle
+
+&
+
+\MiniPg{.6}{
+ Two identical fermions (particles with half-integer spin) cannot occupy the same quantum state simultaneously. Consider the two-particle wave function above. If $\psi_a = \psi_b, $ then $ \psi_- =0.$
+}
+
+ \\ \hline
+ }
+ 
+ \Table{
+ \hline
+ 
+ Exchange operator, $P$
+ & 
+\MiniPg{.6}{
+
+Switcheroo: $Pf(\bold{r}_1,\bold{r}_2) = f(\bold{r}_2,\bold{r}_1)$
+
+If the particles are identical, the Hamiltonian must treat them the same: $m_1 = m_2$ and $V(\bold{r}_1,\bold{r}_2) = V(\bold{r}_2,\bold{r}_1)$. It follows that $P$ and $H$ are compatible observables. $[P,H] = 0$. \tiny Griffiths, \textit{Introduction to Quantum Mechanics}
+
+}
+ 
+\\ \hline
+
+Symmetrization requirement
+&
+\MiniPg{.6}{
+
+For identical particles, the wave function is required to satisfy $\psi(\bold{r}_1,\bold{r}_2) = \pm \psi(\bold{r}_2,\bold{r}_1)$ with + for bosons and $-$ for fermions. \tiny Griffiths, \textit{Introduction to Quantum Mechanics}
+
+}
+
+\\ \hline
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Time-independent perturbation theory}
+\Table{
+\hline
+
+Perturbed Hamiltonian
+
+&
+
+\MiniPg{.6}{
+
+$H = H^0 + \lambda H'$
+
+This may also be expressed as $H = H_0 + H_1$ or $H = H^0 + \Delta H$ or $H = H_0 + \epsilon V$ or something similar. The term $\lambda$ or $\epsilon$ are small numbers, rather they indicate that $\lambda H'$ is a small correction to $H_0$. Later on, $\lambda = 1$ and the symbol just serves to keep track of the order of the correction.
+
+}
+
+\\ \hline
+
+Corrections to $n$th eigenfunction
+
+&
+
+$\psi_n = \psi_n^0 + \lambda \psi_n^1 + \lambda^2 \psi_n^2 + ...$
+
+\\ \hline
+
+Corrections to $n$th eigenvalue
+
+&
+
+$E_n = E_n^0 + \lambda E_n^1 + \lambda^2 E_n^2 + ...$
+
+\\ \hline
+
+First-Order correction to energy
+
+&
+
+$E_n^1 = \braket{\psi_n^0 | H' | \psi_n^0}$
+
+\\ \hline
+
+First-Order correction to wave function
+
+&
+
+$\psi_n^1 = \sum_{m \neq n} \dfrac{\braket{\psi_m^0  | H' | \psi_n^0}}{(E_n^0 - E_m^0)} \psi_m^0$
+
+\\ \hline
+
+Second-Order correction to energy
+
+&
+
+$E_n^2 = \sum_{m \neq n} \dfrac{|\braket{\psi_m^0  | H' | \psi_n^0}|^2}{(E_n^0 - E_m^0)}$
+
+\\ \hline
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

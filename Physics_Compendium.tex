@@ -1,0 +1,116 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%========================================%
+%=P=H=Y=S=I=C=S===C=O=M=P=E=N=D=I=U=M=%
+%=H=H===================================%
+%=Y===Y==================================%
+%=S======S===============================%
+%=I========I==============================%
+%=C=========C============================%
+%=S===========S==========================%
+%========================================%
+%=C===============C======================%
+%=O=================O====================%
+%=M===================M=================%
+%=P======================P===============%
+%=E========================E=============%
+%=N==========================N===========%
+%=D=============================D========%
+%=I================================I======%
+%=U=================================U===%
+%=M===================================M=%
+%========================================%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass{article}
+
+\usepackage{braket}
+\usepackage{bigints}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{esint}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsbsy}
+\usepackage[margin=1in]{geometry}
+
+\linespread{2.5}
+\setlength\parindent{1cm}
+
+
+%%%%%%%%%%
+%% MACROS %%
+%%%%%%%%%%
+
+\newcommand{\angst}{\text{\normalfont\AA}}
+
+\newcommand*{\vv}[1]{\vec{\mkern0mu#1}}
+
+\newcommand{\BigP}[1]{\Big( #1 \Big)}
+
+\newcommand{\Mtx}[1]{\textrm{\textbf{\textsf{#1}}}}
+
+\newcommand{\Table}[1]{\center \begin{tabular}{|c|c|} #1 \end{tabular} \flushleft}
+
+\newcommand{\MiniPg}[2]{\begin{minipage}{#1\textwidth} \vspace{3mm} #2 \vspace{3mm} \end{minipage}}
+
+\newcommand{\GraphicWHN}[3]{\center \includegraphics[width=#1\linewidth, height=#2\linewidth]{images/#3}  \flushleft}
+
+\newcommand\SmallMatrix[1]{
+\renewcommand\arraystretch{0.44}
+\renewcommand \arraycolsep{3pt}
+  \small  \begin{pmatrix}#1\end{pmatrix} \large}
+  
+\newcommand\MPalign[1]{
+\centering
+\renewcommand\arraystretch{1}
+  $\begin{array}{r@{{}\mathrel{}{}}l}
+    #1
+  \end{array}$
+}
+
+%%%%%%%%%%%%%%%%%
+%%% WHATS UP DOC? %%%
+%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\title{Que's Compendium of Memorization and Reference Items for the Hard Working Physicist}
+\author{Ethan Que Williams}
+\maketitle
+
+This list of physics knowledge bits was originally intended to be a study guide for the physics GRE. As such, the sections are organized in the order of study topics listed by good ol' ETS.
+
+%\large
+
+\tableofcontents
+
+\input{SecA_Maths}
+
+\input{SecB_ClassMech}
+
+\input{SecC_EM}
+
+\input{SecCA_WavesOptics}
+
+\input{SecD_Thermo}
+
+\input{SecE_Quantum}
+
+\input{SecF_Atomic}
+
+\input{SecFA_NucPart}
+
+\input{SecG_SpecialRelativ}
+
+\input{SecH_LabMeth}
+
+\input{SecI_Miscellany}
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%===========================================%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
