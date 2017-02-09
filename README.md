@@ -1,7 +1,7 @@
 # TheCompendium
 Welcome to the Physics Compendium!
 
-This LaTeX project was originally created by E. Williams as study guide for the Physics GRE. 
+This LaTeX project was originally created as study guide for the Physics GRE. 
 It can be used as a tool for memorization, review, and reference.
 Please consider adding to it, especially if something strikes you as wrong or unclear.
 
@@ -10,3 +10,5 @@ Would like to...
  * Improve formatting
  * Improve macros?
  * Add physics! (For quals/comps!)
+
+- EQW
