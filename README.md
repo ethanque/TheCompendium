@@ -10,3 +10,7 @@ Would like to...
  * Improve formatting
  * Improve macros?
  * Add physics! (For quals/comps!)
+
+
+Basic LaTeX instructions for generating the pdf:
+Typeset the file Physics_Compendium.tex.
