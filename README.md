@@ -1,4 +1,5 @@
 # TheCompendium
+
 Welcome to the Physics Compendium!
 
 This LaTeX project was originally created as study guide for the Physics GRE. 
@@ -13,5 +14,8 @@ Would like to...
 
 
 Basic LaTeX instructions for generating the pdf:
+
 Typeset the file "Physics_Compendium.tex".
+
+
 -EQW
