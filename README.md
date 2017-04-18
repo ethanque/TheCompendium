@@ -12,9 +12,6 @@ Would like to...
  * Add physics! (For quals/comps!)
 
 
-<<<<<<< HEAD
 Basic LaTeX instructions for generating the pdf:
-Typeset the file Physics_Compendium.tex.
-=======
+Typeset the file "Physics_Compendium.tex".
 -EQW
->>>>>>> 1ad5e6984ea9312459bdafbd93e13ca60cef23d6
